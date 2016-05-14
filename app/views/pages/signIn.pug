@@ -1,0 +1,12 @@
+extends ../layout.pug
+
+block content
+	div.container
+		form.form-signin
+			h2.form-signin-heading Please sign in
+			label(for="inputId").sr-only ID card
+			input(type="text" placeholder="Id card number" required autofocus)#inputId.form-control
+			label(for="inputPassword").sr-only Password
+			input#inputPassword.form-control(type="password"  placeholder="password" required)
+			button.btn.btn-lg.btn-primary.btn-block(type="submit") Sign in
+			

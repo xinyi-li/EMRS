@@ -1,0 +1,36 @@
+{
+  "name": "electronic-medical-system",
+  "version": "0.0.1",
+  "description": "QM Electronic Medical System to store the medical records",
+  "main": "serverStart.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "moment": "^2.13.0",
+    "aws-sdk": "^2.3.10",
+    "mongoose": "^4.4.16",
+    "node-gyp": "^3.3.1",
+    "bcryptjs": "^2.3.0",
+    "pug": "^2.0.0-alpha7",
+    "pug-load": "^1.0.3",
+    "path": "^0.12.7",
+    "grunt": "^1.0.1",
+    "mongodb": "^2.1.18"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/xinyi-li/EMRS.git"
+  },
+  "keywords": [
+    "EMRS"
+  ],
+  "author": "lixinyi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xinyi-li/EMRS/issues"
+  },
+  "homepage": "https://github.com/xinyi-li/EMRS#readme"
+}

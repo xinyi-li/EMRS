@@ -1,0 +1,21 @@
+{
+  "name": "QM Electronic Medical Records System",
+  "description": "a system to stroe patients' medical records",
+  "main": "",
+  "keywords": [
+    "EMRS"
+  ],
+  "authors": [
+    "lixinyi"
+  ],
+  "license": "MIT",
+  "homepage": "http://192.168.1.31:3000/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ]
+}

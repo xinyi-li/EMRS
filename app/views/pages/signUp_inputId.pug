@@ -1,0 +1,13 @@
+extends ../layout.pug
+
+block content
+		.container
+			.jumbotron
+				form
+					form-group
+						label(for="inputId").control-label.h4 Please input your unique ID card number
+						.row
+							.col-md-5
+								input.form-control(type="text" placeholder="Your ID Card Number")#inputId
+							.col-md-7
+								button.btn.btn-primary.btn-lg(type="submit") Sumbit

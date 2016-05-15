@@ -1,0 +1,62 @@
+extends ../layout.pug
+
+block content
+	.container
+		.row
+			.panel.panel-success
+				.panel-heading
+					.row
+						.col-md-2 
+							h6 Doctor Last Name: #{item.doctorLastName}
+						.col-md-2 
+							h6 Doctor First Name: #{item.doctorFirstName}
+						.col-md-2 
+							h6 Hospital: #{item.hospital}
+						.col-md-3
+							h6 Create time:
+						.col-md-3
+							h6 Last modify time:
+				.panel-body
+					.form
+						.row
+							.col-md-2
+								h5 Symptom:
+							.col-md-10
+								.form-group
+									textarea.form-control(row=3 placeholder="please input the symptom of this patient")
+						.row
+							br
+						.row
+							.col-md-2
+								h5 Inspection Items:
+							.col-md-10
+								.form-group
+									textarea.form-control(row=3 placeholder="please input the inspection items of this patient")
+						.row
+							br
+						.row
+							.col-md-2
+								h5 Inspection Results:
+							.col-md-10
+								.form-group
+									textarea.form-control(row=3 placeholder="please input the inspection results of this patient")
+						.row 
+							br
+						.row
+							.col-md-2
+								h5 Diagnose: 
+							.col-md-10
+								.form-group
+									textarea.form-control(row=3 placeholder="please input the diagnose of this patient")
+						.row
+							br
+						.row
+							.col-md-2
+								h5 Prescriptions:
+							.col-md-10
+								.form-group
+									textarea.form-control(row=3 placeholder="please input the prescriptions of this patient")
+						.row
+							.col-md-1.col-md-offset-11
+								.form-group
+									button.btn.btn-primary.btn-lg(type="sumbit") save

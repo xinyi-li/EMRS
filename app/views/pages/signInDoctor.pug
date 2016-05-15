@@ -2,10 +2,25 @@ extends ../layout.pug
 
 block content
 	div.container
-		form.form-signin
-			h2.form-signin-heading Please sign in
-			label(for="inputId").sr-only ID card
-			input(type="text" placeholder="Id card number" required autofocus)#inputId.form-control
-			label(for="inputPassword").sr-only Password
-			input#inputPassword.form-control(type="password"  placeholder="password" required)
-			button.btn.btn-lg.btn-primary.btn-block(type="submit") Sign in
+		form.form-signin.form-orizontal
+			h2.form-signin-heading Doctor Sign in
+			.row
+				.form-group
+					label(for="inputId").col-sm-2.control-label User Id
+					.col-sm-10
+						input(type="text" placeholder="input your user Id" required autofocus)#inputId.form-control
+			.row
+				br
+				br
+			.row
+				.form-group
+					label(for="password").col-sm-2.control-label Password
+					.col-sm-10
+						input(type="password" placeholder="input your password" required autofocus)#password.form-control
+			.row
+				br
+				br
+			.row
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-lg.btn-primary.btn-block(type="submit") Sign in

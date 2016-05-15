@@ -4,19 +4,27 @@
   "description": "QM Electronic Medical System to store the medical records",
   "main": "serverStart.js",
   "dependencies": {
-    "express": "^4.13.4",
-    "moment": "^2.13.0",
     "aws-sdk": "^2.3.10",
+    "bcryptjs": "^2.3.0",
+    "express": "^4.13.4",
+    "grunt": "^1.0.1",
+    "kerberos": "file:kerberos",
+    "moment": "^2.13.0",
+    "mongodb": "^2.1.18",
     "mongoose": "^4.4.16",
     "node-gyp": "^3.3.1",
-    "bcryptjs": "^2.3.0",
-    "pug": "^2.0.0-alpha7",
-    "pug-load": "^1.0.3",
     "path": "^0.12.7",
-    "grunt": "^1.0.1",
-    "mongodb": "^2.1.18"
+    "pug": "^2.0.0-alpha7",
+    "pug-load": "^1.0.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-concurrent": "^2.3.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-express-server": "^0.5.3",
+    "grunt-nodemon": "^0.4.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,0 +1,50 @@
+extends ../layout.pug
+
+block content
+	.container
+		.row
+			.col-md-4
+				h1.bg-info Patient's information
+		.row
+			br
+		.row
+			br
+		.well
+			.row
+				.col-md-4.text-center
+					h4 Id card Number: 
+					p #{user.id}
+				.col-md-4.text-center 
+					h4 Last Name:
+					p #{user.lastName}
+				.col-md-4.text-center
+					h4 First Name:
+					p #{user.firstName}
+			.row
+				.col-md-4.text-center
+					h4 Gender: 
+					p #{user.gender}
+				.col-md-4.text-center 
+					h4 Birth:
+					p #{user.birth}
+				.col-md-4.text-center
+					h4 Email:
+					p #{user.email}
+			.row
+				.col-md-4.text-center
+					h4 Mobile Phone: 
+					p #{user.mobileNo}
+				.col-md-4.text-center 
+					h4 Join Time:
+					p #{user.createAt}
+				.col-md-4.text-center
+					h4 Last modify Time:
+					p #{user.updateAt}
+		.row
+			.col-md-4
+				a.btn.btn-info.btn-lg view your medical records
+
+
+
+
+

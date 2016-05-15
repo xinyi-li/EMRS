@@ -1,11 +1,17 @@
 extends ../layout.pug
 
 block content
-	div.container.theme-shwcase(role="main")
-		div.jumbotron.row
-			h1=title
-			h2 Store all your medical records in a safe way
-		div.row
-			h2 Please choose your role
-		div.row
-			a(href="/signIn") Doctor
+	div.container
+		div.jumbotron
+			h2 Welcome to
+			h1 QM Electronic Medical System
+			p.lead provide a secure system that can record your all medical records
+			
+	div.container
+		div.row.text-center
+			h2 choose your role
+		div.row.text-center
+			div.col-md-6.col-xm-6
+				a.btn.btn-lg.btn-primary(href="/signInDoctor") Doctor
+			dic.col-md-6.col-xm-6
+				a.btn.btn-lg.btn-success(href="/signInPatient") Patient

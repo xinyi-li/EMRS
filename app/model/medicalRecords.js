@@ -20,3 +20,15 @@ exports.queryParm = function(IdCardNo){
         }
     };
 }
+exports.createMedicalRecord = function(receiveInfo){
+    return params = {
+        TableName:table,
+        Item:{
+            "PatientLinkId": receiveInfo.PatientLinkId,
+            "DoctorLinkId": receiveInfo.DoctorLinkId,
+            "DoctorFirstName":receiveInfo.DoctorFirstName,
+            "Hospital":receiveInfo.Hospital,
+            "Records":receiveInfo.Records
+        }
+    };
+}

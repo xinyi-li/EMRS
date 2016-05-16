@@ -4,8 +4,12 @@ var path = require('path');
 app.listen(3001);
 var mongoose = require("mongoose");
 var Patient=require("./app/model/patient")
-var db = mongoose.connect("mongodb://127.0.0.1:27017/EMRS");
+var linkMongoDB="mongodb://127.0.0.1:27017/EMRS"
+var db = mongoose.connect(linkMongoDB);
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser')
+var session = require('express-session')
+const MongoStore = require('connect-mongo')(session);
 
 
 app.set('view engine', 'pug');
@@ -15,6 +19,25 @@ app.locals.moment=require('moment');
 
 var title='QM EMS System'
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
+
+app.use(session({
+  secret: 'lixinyi', 
+  resave: false,
+  cookie: { maxAge: 60 * 1000 },
+  saveUninitialized: false,
+  store: new MongoStore({ url:linkMongoDB })
+}));
+
+app.use(function(req,res,next){
+	var _patientInfo = req.session.patientInfo;
+	console.log("in session:"+req.session.patientInfo);
+
+  if (_patientInfo) {
+   	app.locals.patientSession=_patientInfo;
+  }
+
+  return next()
+})
 
 app.get('/', function (req, res) {
   res.render('index', {
@@ -49,17 +72,19 @@ app.post('/user/signInPatientHandler',urlencodedParser, function(req, res) {
       //console.log('no such user')
     }
 
-    console.log('patient info is ' + patientInfo)
+    //console.log('patient info is ' + patientInfo)
     patientInfo.comparePassword(password, function(err, isMatch) {
       if (err) {
         console.log(err)
       }
 
       if (isMatch) {
-        //req.session.patientInfo = patientInfo
+        req.session.patientInfo = patientInfo
+        //console.log("in session:"+req.session.patientInfo);
         //return res.send("success!");
-        return res.render('patientInfo', {patient: patientInfo});
+        //return res.render('patientInfo', {patient: patientInfo});
         //return res.send(patientInfo)
+        return res.redirect('/')
       }
       else {
         return res.redirect('/')
@@ -69,6 +94,12 @@ app.post('/user/signInPatientHandler',urlencodedParser, function(req, res) {
     })
   })
 });
+
+app.get('/logout', function(req, res){
+	delete req.session.patientInfo;
+	delete app.locals.patientInfo;
+	res.redirect('/');
+})
 
 /*app.get('/patientInfo', function(req, res){
 	res.render('patientInfo', {
@@ -113,8 +144,6 @@ app.get('/medicalRecords/:IdCardNo', function(req, res) {
 	var IdCardNo = req.params.IdCardNo
 	var paramter=queryModel.queryParm(IdCardNo);
 	
-	console.log("i am here");
-	console.log(paramter);
 	docClient.query(paramter, function(err, data) {
         if (err) {
             console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
@@ -125,6 +154,42 @@ app.get('/medicalRecords/:IdCardNo', function(req, res) {
     });
 	
 
+});
+
+app.post('/user/addMedicalHandler',urlencodedParser, function(req, res) {
+  var IdCardNo = req.body.records
+  var password = req.body.password
+
+  Patient.findOne({IdCardNo: IdCardNo}, function(err, patientInfo) {
+    if (err) {
+      console.log(err)
+    }
+
+    if (!patientInfo) {
+      return res.redirect('/')
+      //return res.send(IdCardNo+password)
+      //console.log('no such user')
+    }
+
+    console.log('patient info is ' + patientInfo)
+    patientInfo.comparePassword(password, function(err, isMatch) {
+      if (err) {
+        console.log(err)
+      }
+
+      if (isMatch) {
+        req.session.patientInfo = patientInfo
+        //return res.send("success!");
+        return res.render('patientInfo', {patient: patientInfo});
+        //return res.send(patientInfo)
+      }
+      else {
+        return res.redirect('/')
+        //return res.send("password wrong");
+        //console.log("password wrong");
+      }
+    })
+  })
 });
 
 app.get('/addMedicalRecords', function(req, res){

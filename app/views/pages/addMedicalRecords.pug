@@ -17,13 +17,13 @@ block content
 						.col-md-3
 							h6 Last modify time:
 				.panel-body
-					.form
+					.form(method="POST" action="/user/addMedicalHandler")
 						.row
 							.col-md-2
 								h5 Symptom:
 							.col-md-10
 								.form-group
-									textarea.form-control(row=3 placeholder="please input the symptom of this patient")
+									textarea.form-control(row=3 placeholder="please input the symptom of this patient"  name="records[Symptom]")
 						.row
 							br
 						.row
@@ -31,7 +31,7 @@ block content
 								h5 Inspection Items:
 							.col-md-10
 								.form-group
-									textarea.form-control(row=3 placeholder="please input the inspection items of this patient")
+									textarea.form-control(row=3 placeholder="please input the inspection items of this patient" name="records[InspectionItems]")
 						.row
 							br
 						.row
@@ -39,7 +39,7 @@ block content
 								h5 Inspection Results:
 							.col-md-10
 								.form-group
-									textarea.form-control(row=3 placeholder="please input the inspection results of this patient")
+									textarea.form-control(row=3 placeholder="please input the inspection results of this patient" name="records[InspectionResults]")
 						.row 
 							br
 						.row
@@ -47,7 +47,7 @@ block content
 								h5 Diagnose: 
 							.col-md-10
 								.form-group
-									textarea.form-control(row=3 placeholder="please input the diagnose of this patient")
+									textarea.form-control(row=3 placeholder="please input the diagnose of this patient" name="records[Diagnose]")
 						.row
 							br
 						.row
@@ -55,7 +55,7 @@ block content
 								h5 Prescriptions:
 							.col-md-10
 								.form-group
-									textarea.form-control(row=3 placeholder="please input the prescriptions of this patient")
+									textarea.form-control(row=3 placeholder="please input the prescriptions of this patient" name="records[Prescriptions]")
 						.row
 							.col-md-1.col-md-offset-11
 								.form-group

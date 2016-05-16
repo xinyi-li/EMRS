@@ -1,4 +1,18 @@
 div.container
     div.page-header.clearfix
-      h3.text-muted=title
+      h3.text-muted QM EMS System
+.navbar.navbar-default.navbar-fixed-bottom
+  .container
+    .navbar-header
+      a.navbar-brand(href="/") QM EMS System
+    if patientSession
+      p.navbar-text.navbar-right
+        span welcome,#{patientSession.lastName}
+        span &nbsp;|&nbsp;
+        a.navbar-link(href="/logout") logout
+    else
+      p.navbar-text.navbar-right
+        a.navbar-link(href="/") sign up
+        span &nbsp;|&nbsp;
+        a.navbar-link(href="/") sign in
       

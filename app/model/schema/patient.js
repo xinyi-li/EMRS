@@ -23,6 +23,10 @@ var PatientSchema = new mongoose.Schema({
       type: Date,
       default: Date.now()
     }
+  },
+  linkDynamoDB: {
+    unique:true,
+    type:String
   }
 })
 

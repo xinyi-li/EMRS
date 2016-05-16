@@ -1,7 +1,7 @@
 // var urlencodedParser = bodyParser.urlencoded({ extended: true })
 var queryModel=require("../model/medicalRecords")
 var AWS = require("aws-sdk");
-var urlencodedParser = bodyParser.urlencoded({ extended: true })
+//var urlencodedParser = bodyParser.urlencoded({ extended: true })
 AWS.config.update({
   region: "cn-north-1",
   endpoint: "http://localhost:8000"
@@ -24,6 +24,16 @@ exports.medicalRecordsByID=function(req, res) {
   };
 
   exports.addMedicalHandler=function(req, res) {
+    var records=req.body.records;
+    var params =MedicalRecord.createMedicalRecord(records)
+    docClient.put(params, function(err){
+      if(err){
+        console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
+      }
+      else{
+        res.send("successfully!")
+      }
+    })
     var IdCardNo = req.body.records
     var password = req.body.password
 
@@ -47,7 +57,7 @@ exports.medicalRecordsByID=function(req, res) {
         if (isMatch) {
           req.session.patientInfo = patientInfo
           //return res.send("success!");
-          return res.render('patientInfo', {patient: patientInfo});
+          return res.render('patientInfo', {patient: patientInfo, patientSession: req.session.patientInfo});
           //return res.send(patientInfo)
         }
         else {

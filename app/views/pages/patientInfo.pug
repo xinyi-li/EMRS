@@ -42,7 +42,8 @@ block content
 					p #{patient.updateAt}
 		.row
 			.col-md-4
-				a.btn.btn-info.btn-lg view your medical records
+				-var link='medicalRecords/'+patient.linkDynamoDB
+				a.btn.btn-info.btn-lg(href=link) view your medical records
 
 
 

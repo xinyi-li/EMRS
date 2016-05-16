@@ -13,7 +13,8 @@ var patient={
         gender:'felmale',
         birth:123,
         email:'396275915@qq.com',
-        mobileNo:'mobileNo'
+        mobileNo:'mobileNo',
+        linkDynamoDB:'123'
       }
 
  var _patient = new Patient(patient)

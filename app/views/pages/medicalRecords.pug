@@ -13,51 +13,60 @@ block content
 			.panel.panel-success
 				.panel-heading
 					.row
-						.col-md-2 
+						.col-md-4 
 							h6 Doctor Last Name: #{item.doctorLastName}
-						.col-md-2 
+						.col-md-4 
 							h6 Doctor First Name: #{item.doctorFirstName}
-						.col-md-2 
+						.col-md-4 
 							h6 Hospital: #{item.hospital}
-						.col-md-3
-							h6 Create time:
-						.col-md-3
-							h6 Last modify time:
-				.panel-body
-					.row
-						.col-md-2
-							h5 Symptom:
-						.col-md-10
-							p.
-								mock data
-							hr.divider(style="width: 100%; color:black; height:1px;background-color:black;")
-					.row
-						.col-md-2
-							h5 Inspection Items:
-						.col-md-10
-							p.
-								mock data
-							hr.divider(style="width: 100%; color:black; height:1px;background-color:black;")
-					.row
-						.col-md-2
-							h5 Inspection Results:
-						.col-md-10
-							p.
-								mock data
-							hr.divider(style="width: 100%; color:black; height:1px;background-color:black;")
-					.row
-						.col-md-2
-							h5 Diagnose: 
-						.col-md-10
-							p.
-								mock data
-							hr.divider(style="width: 100%; color:black; height:1px;background-color:black;")
-					.row
-						.col-md-2
-							h5 Prescriptions:
-						.col-md-10
-							p.
-								mock data
+				- var recordsItem=item.Records
+				each record in recordsItem
+					.panel-body
+						.row
+							.col-md-2
+								h5 Symptom:
+							.col-md-10
+								p.
+									#{record.Symptom}
+								hr.divider(style="width: 100%; color:black; height:1px;background-color:black;")
+						.row
+							.col-md-2
+								h5 Inspection Items:
+							.col-md-10
+								p.
+									#{record.InspectionItems}
+								hr.divider(style="width: 100%; color:black; height:1px;background-color:black;")
+						.row
+							.col-md-2
+								h5 Inspection Results:
+							.col-md-10
+								p.
+									#{record.InspectionResult}
+								hr.divider(style="width: 100%; color:black; height:1px;background-color:black;")
+						.row
+							.col-md-2
+								h5 Diagnose: 
+							.col-md-10
+								p.
+									#{record.Diagnose}
+								hr.divider(style="width: 100%; color:black; height:1px;background-color:black;")
+						.row
+							.col-md-2
+								h5 Prescriptions:
+							.col-md-10
+								p.
+									#{record.Prescriptions}
+								hr.divider(style="width: 100%; color:black; height:1px;background-color:black;")
+						.row
+							.col-md-6
+								h4 Create time:
+								p.
+									#{record.CreateAt}
+							.col-md-6
+								h4 Last modify time:
+								p.
+									#{record.UpdateAt}
+						.row
 							hr.divider(style="width: 100%; color:black; height:1px;background-color:black;")
 
 

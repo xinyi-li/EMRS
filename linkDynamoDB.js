@@ -6,16 +6,27 @@ AWS.config.update({
 });
 
 var dynamodb = new AWS.DynamoDB();
+var params0 = {
+    TableName : "MedicalRecords"
+};
+
+dynamodb.deleteTable(params0, function(err, data) {
+    if (err) {
+        console.error("Unable to delete table. Error JSON:", JSON.stringify(err, null, 2));
+    } else {
+        console.log("Deleted table. Table description JSON:", JSON.stringify(data, null, 2));
+    }
+});
 
 var params = {
     TableName : "MedicalRecords",
     KeySchema: [       
-        { AttributeName: "userId", KeyType: "HASH"},  //Partition key
-        { AttributeName: "doctorId", KeyType: "RANGE" }  //Sort key
+        { AttributeName: "PatientLinkId", KeyType: "HASH"},  //Partition key
+        { AttributeName: "DoctorLinkId", KeyType: "RANGE" }  //Sort key
     ],
     AttributeDefinitions: [       
-        { AttributeName: "userId", AttributeType: "S" },
-        { AttributeName: "doctorId", AttributeType: "S" }
+        { AttributeName: "PatientLinkId", AttributeType: "S" },
+        { AttributeName: "DoctorLinkId", AttributeType: "S" }
     ],
     ProvisionedThroughput: {       
         ReadCapacityUnits: 10, 

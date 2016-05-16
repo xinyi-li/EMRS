@@ -6,13 +6,7 @@ var mongoose = require("mongoose");
 var Patient=require("./app/model/patient")
 var db = mongoose.connect("mongodb://127.0.0.1:27017/EMRS");
 var bodyParser = require('body-parser');
-var AWS = require("aws-sdk");
-AWS.config.update({
-  region: "us-west-2",
-  endpoint: "http://localhost:8000"
-});
 
-var docClient = new AWS.DynamoDB.DocumentClient();
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/app/views/pages');
@@ -84,48 +78,55 @@ app.post('/user/signInPatientHandler',urlencodedParser, function(req, res) {
 })
 */
 
-app.get('/medicalRecords', function(req, res){
-	res.render('medicalRecords', {
-		title: title,
-		records: [
-		{id: "1", doctorLastName: "xinyi", doctorFirstName:"li", hospital:"li"},
-		{id: "1", doctorLastName: "xinyi", doctorFirstName:"li", hospital:"li"},
-		{id: "1", doctorLastName: "xinyi", doctorFirstName:"li", hospital:"li"},
-		]
-	})
-})
-
-// app.get('/patientInfoInDoctor', function(req, res){
-// 	res.render('patientInfoInDoctor', {
+// app.get('/medicalRecords', function(req, res){
+// 	res.render('medicalRecords', {
 // 		title: title,
-// 		patient: {id: "1", lastName: "xinyi", firstName:"li", mobileNo:+8615828006196, gender: "female", birth: "1994.08.08", email:"396275915@qq.com", createAt:"2015.01.01", updateAt:"2016.02.01"}
+// 		records: [
+// 		{id: "1", doctorLastName: "xinyi", doctorFirstName:"li", hospital:"li"},
+// 		{id: "1", doctorLastName: "xinyi", doctorFirstName:"li", hospital:"li"},
+// 		{id: "1", doctorLastName: "xinyi", doctorFirstName:"li", hospital:"li"},
+// 		]
 // 	})
 // })
 
-app.get('/patientInfoInDoctor:IdCardNo', function(req, res) {
-	var params = {
-    TableName : "MedicalRecords",
-    KeyConditionExpression: "#id = :idValue and title between :letter1 and :letter2",
-    ExpressionAttributeNames:{
-        "#id": "PatientLinkId"
-    },
-    ExpressionAttributeValues: {
-        ":idValue":"123"
-    }
-};
+app.get('/patientInfoInDoctor', function(req, res){
+	res.render('patientInfoInDoctor', {
+		title: title,
+		patient: {id: "1", lastName: "xinyi", firstName:"li", mobileNo:+8615828006196, gender: "female", birth: "1994.08.08", email:"396275915@qq.com", createAt:"2015.01.01", updateAt:"2016.02.01"}
+	})
+})
 
-docClient.query(params, function(err, data) {
-    if (err) {
-        console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
-    } else {
-        console.log("Query succeeded.");
-        data.Items.forEach(function(item) {
-            console.log(" -", item.year + ": " + item.title
-            + " ... " + item.info.genres
-            + " ... " + item.info.actors[0]);
-        });
-    }
+
+
+var AWS = require("aws-sdk");
+
+AWS.config.update({
+  region: "cn-north-1",
+  endpoint: "http://localhost:8000"
 });
+
+var docClient = new AWS.DynamoDB.DocumentClient();
+
+var queryModel=require("./app/model/medicalRecords")
+
+app.get('/medicalRecords/:IdCardNo', function(req, res) {
+	var IdCardNo = req.params.IdCardNo
+	var paramter=queryModel.queryParm(IdCardNo);
+	
+	console.log("i am here");
+	console.log(paramter);
+	docClient.query(paramter, function(err, data) {
+        if (err) {
+            console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
+        } else {
+            console.log("Query succeeded.");
+            res.render('medicalRecords', {records: data.Items});
+        }
+    });
+	
+
+});
+
 app.get('/addMedicalRecords', function(req, res){
 	res.render('addMedicalRecords', {
 		title: title,

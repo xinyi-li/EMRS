@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var db = mongoose.connect("mongodb://127.0.0.1:27017/test");
+var db = mongoose.connect("mongodb://127.0.0.1:27017/EMRS");
 var TestSchema = new mongoose.Schema({
     name : String,
     age : {type:Number,default:0},

@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
-var PatientSchema = require('schemas/user')
-var Patient = mongoose.model('User', PatientSchema)
+var PatientSchema = require('./schema/patient')
+var Patient = mongoose.model('Patient', PatientSchema)
 
 module.exports = Patient
 

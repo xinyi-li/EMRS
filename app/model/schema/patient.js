@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var bcrypt = require('bcrypt')
+var bcrypt = require('bcryptjs')
 var SALT_WORK_FACTOR = 10
 
 var PatientSchema = new mongoose.Schema({
@@ -9,6 +9,7 @@ var PatientSchema = new mongoose.Schema({
   },
   password: String,
   firstName:String,
+  lastName:String,
   gender:String,
   birth:Number,
   email:String,
@@ -26,7 +27,7 @@ var PatientSchema = new mongoose.Schema({
 })
 
 PatientSchema.pre('save', function(next) {
-  var user = this
+  var patient = this
 
   if (this.isNew) {
     this.meta.createAt = this.meta.updateAt = Date.now()
@@ -38,10 +39,10 @@ PatientSchema.pre('save', function(next) {
   bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
     if (err) return next(err)
 
-    bcrypt.hash(user.password, salt, function(err, hash) {
+    bcrypt.hash(patient.password, salt, function(err, hash) {
       if (err) return next(err)
 
-      user.password = hash
+      patient.password = hash
       next()
     })
   })
@@ -54,20 +55,6 @@ PatientSchema.methods = {
 
       cb(null, isMatch)
     })
-  }
-}
-
-PatientSchema.statics = {
-  fetch: function(cb) {
-    return this
-      .find({})
-      .sort('meta.updateAt')
-      .exec(cb)
-  },
-  findById: function(id, cb) {
-    return this
-      .findOne({_id: id})
-      .exec(cb)
   }
 }
 

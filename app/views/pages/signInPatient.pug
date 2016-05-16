@@ -9,13 +9,13 @@ block content
 					p.lead sign up your account!
 					a.btn.btn-primary.btn-lg sign up
 			.col-md-6
-				form.form-signin.form-orizontal
+				form.form-signin.form-orizontal(method="POST" action="/user/signInPatientHandler")
 					h2.form-signin-heading Sign in
 					.row
 						.form-group
 							label(for="inputId").col-sm-2.control-label ID card
 							.col-sm-10
-								input(type="text" placeholder="input your Id card number" required autofocus)#inputId.form-control
+								input(type="text" placeholder="input your Id card number" name="IdCardNo" required autofocus)#inputId.form-control
 					.row
 						br
 						br
@@ -23,7 +23,7 @@ block content
 						.form-group
 							label(for="password").col-sm-2.control-label Password
 							.col-sm-10
-								input(type="password" placeholder="input your password" required autofocus)#password.form-control
+								input(type="password" placeholder="input your password" required autofocus name="password")#password.form-control
 					.row
 						br
 						br

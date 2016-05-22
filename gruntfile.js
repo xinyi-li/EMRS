@@ -10,13 +10,13 @@ module.exports=function(grunt){
             }
         },
         pug:{
-          files:['views/**'],
+          files:['./app/views/**'],
           options:{
             livereload:true
           }
         },
         js:{
-          files:['model/**', 'controller/**'],
+          files:['./app/model/**', './app/controller/**','./config/**','./app/public/**'],
           options:{
             liverelosd:true
           }

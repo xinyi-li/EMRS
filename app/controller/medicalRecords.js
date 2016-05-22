@@ -31,7 +31,7 @@ exports.medicalRecordsByID=function(req, res) {
         console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
       }
       else{
-        res.send("successfully!")
+        res.redirct('/')
       }
     })
     var IdCardNo = req.body.records
@@ -71,7 +71,6 @@ exports.medicalRecordsByID=function(req, res) {
 
   exports.addMedicalRecords=function(req, res){
     res.render('addMedicalRecords', {
-      title: title,
       item: {id: "1", doctorLastName: "xinyi", doctorFirstName:"li", hospital:"li"}
     })
   }

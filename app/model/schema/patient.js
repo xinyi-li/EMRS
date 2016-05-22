@@ -1,6 +1,13 @@
 var mongoose = require('mongoose')
 var bcrypt = require('bcryptjs')
 var SALT_WORK_FACTOR = 10
+var crypto=require('crypto')
+
+function getRandomString(len) {
+  if (!len) len = 16
+
+  return crypto.randomBytes(Math.ceil(len / 2)).toString('hex')
+}
 
 var PatientSchema = new mongoose.Schema({
   IdCardNo: {
@@ -11,7 +18,7 @@ var PatientSchema = new mongoose.Schema({
   firstName:String,
   lastName:String,
   gender:String,
-  birth:Number,
+  birth:String,
   email:String,
   mobileNo:String,
   meta: {
@@ -50,6 +57,8 @@ PatientSchema.pre('save', function(next) {
       next()
     })
   })
+
+  this.linkDynamoDB=getRandomString();
 })
 
 PatientSchema.methods = {

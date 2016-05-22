@@ -7,9 +7,9 @@ block content
 				.jumbotron
 					h1 First Come In?
 					p.lead sign up your account!
-					a.btn.btn-primary.btn-lg sign up
+					a.btn.btn-primary.btn-lg(href="/signUpInputId") sign up
 			.col-md-6
-				form.form-signin.form-orizontal(method="POST" action="/user/signInPatientHandler")
+				form.form-signin.form-orizontal(method="POST" action="/patient/signInPatientHandler")
 					h2.form-signin-heading Sign in
 					.row
 						.form-group

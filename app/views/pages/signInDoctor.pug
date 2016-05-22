@@ -23,4 +23,20 @@ block content
 			.row
 				.form-group
 					.col-sm-offset-2.col-sm-10
-						button.btn.btn-lg.btn-primary.btn-block(type="submit") Sign in
+						//-button.btn.btn-lg.btn-primary.btn-block(type="submit") Sign in
+						a(href="#", data-toggle="modal", data-target="#signinModal").btn.btn-success.btn-lg Sign in
+	#signinModal.modal.fade
+		.modal-dialog
+			.modal-content
+				form(method="POST", action="/user/signin")
+			.modal-header user authenticate
+			.modal-body
+				.form-group
+					label(for="signinName") Id card No
+					input#signinName.form-control(name="user[name]", type="text")
+				.form-group
+					label(for="signinPassword") password
+					input#signinPassword.form-control(name="user[password]", type="text")
+			.modal-footer
+				button.btn.btn-default(type="button", data-dismiss="modal") close
+				button.btn.btn-success(type="submit") submit

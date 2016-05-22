@@ -1,4 +1,70 @@
 extends ../layout.pug
 
 block content
-	
+	.container
+		.row
+			form(method="POST" action="/signUpInputDetailsHandler")
+				.row
+					.col-md-2
+						h5 password
+					.col-md-3
+						.form-group
+							input.form-control(placeholder="please input your password"  type ="password" name="patientDetail[password]")
+				.row
+					br
+				.row
+					.col-md-2
+						h5 input your password again
+					.col-md-3
+						.form-group
+							input.form-control(placeholder="please input your password again"  type ="password" name="patientDetail[rePassword]")
+				.row
+					br
+				.row
+					.col-md-2
+						h5 LastName
+					.col-md-3
+						.form-group
+							input.form-control(placeholder="please input your lastName"  type ="text" name="patientDetail[lastName]")
+				.row
+					.col-md-2
+						h5 FirstName
+					.col-md-3
+						.form-group
+							input.form-control(placeholder="please input your firstName"  type ="text" name="patientDetail[firstName]")
+				.row 
+					br
+				.row
+					.col-md-2
+						h5 Email
+					.col-md-3
+						.form-group
+							input.form-control(placeholder="please input your email"  type ="email" name="patientDetail[email]")
+				.row
+					br
+				.row
+					.col-md-2
+						h5 Gender
+					.col-md-3
+						.form-group
+							input.form-control(placeholder="please input your gender"  type ="text" name="patientDetail[gender]")
+				.row
+					br
+				.row
+					.col-md-2
+						h5 Birth
+					.col-md-3
+						.form-group
+							input.form-control(placeholder="please input your birth"  type ="text" name="patientDetail[birth]")
+				.row
+					br
+				.row
+					.col-md-2
+						h5 MobilePhone
+					.col-md-3
+						.form-group
+							input.form-control(placeholder="please input your mobileNo"  type ="text" name="patientDetail[mobileNo]")
+				.row
+					.col-md-1.col-md-offset-11
+						.form-group
+							button.btn.btn-primary.btn-lg(type="sumbit") save

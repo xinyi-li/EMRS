@@ -2,20 +2,20 @@ extends ../layout.pug
 
 block content
 	.jumbotron.text-center
-		a.btn.btn-duccess.btn-lg(href="#", data-toggle="modal", data-target="#authorizationModel") 注册
-#authorizationModel.modal.fade
-	.modal-dialog
-		.modal-content
-			form(method="POST", action="/patient/signInPatientHandler")
-				.modal-header Patient Authorization
-				.modal-body
-					.form-group
-						label(for="signinName") Id card No
-						input#signinName.form-control(name="user[name]", type="text")
-					.form-group
-						label(for="signinPassword") Password
-						input#signinPassword.form-control(name="user[password]", type="text")
-				.modal-footer
-					button.btn.btn-default(type="button", data-dismiss="modal") close
-					button.btn.btn-success(type="submit") submit
+		a.btn.btn-success.btn-lg(href="#", data-toggle="modal", data-target="#authorizationModel") Authorization
+	#authorizationModel.modal.fade
+		.modal-dialog
+			.modal-content
+				form(method="POST", action="/signInPatientHandler")
+					.modal-header Patient Authorization
+					.modal-body
+						.form-group
+							label(for="signinName") Id card No
+							input#signinName.form-control(name="IdCardNo", type="text")
+						.form-group
+							label(for="signinPassword") Password
+							input#signinPassword.form-control(name="password", type="password")
+					.modal-footer
+						button.btn.btn-default(type="button", data-dismiss="modal") close
+						button.btn.btn-success(type="submit") submit
 

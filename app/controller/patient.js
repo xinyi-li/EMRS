@@ -121,8 +121,15 @@ exports.signInPatientHandler= function(req, res) {
         console.log(err)
       }
       if (isMatch) {
-        req.session.patientInfo = patientInfo
-        return res.render('patientInfo', {patient: patientInfo, patientSession:req.session.patientInfo});
+        var doctorInfo=req.session.doctorInfo
+        if(doctorInfo){
+          delete req.session.doctorInfo;
+          res.render('patientInfoInDoctor', {doctor: doctorInfo, patient:patientInfo});
+        }
+        else{
+          req.session.patientInfo = patientInfo
+          return res.render('patientInfo', {patient: patientInfo, patientSession:patientInfo});
+        }
       }
       else {
         return res.send("wrong password")

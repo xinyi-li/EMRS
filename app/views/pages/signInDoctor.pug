@@ -2,13 +2,13 @@ extends ../layout.pug
 
 block content
 	div.container
-		form.form-signin.form-orizontal
+		form.form-signin.form-orizontal(method="POST" action="/signInDoctorHandler")
 			h2.form-signin-heading Doctor Sign in
 			.row
 				.form-group
 					label(for="inputId").col-sm-2.control-label User Id
 					.col-sm-10
-						input(type="text" placeholder="input your user Id" required autofocus)#inputId.form-control
+						input(type="text" placeholder="input your user Id" name="doctorId" required autofocus)#inputId.form-control
 			.row
 				br
 				br
@@ -16,27 +16,11 @@ block content
 				.form-group
 					label(for="password").col-sm-2.control-label Password
 					.col-sm-10
-						input(type="password" placeholder="input your password" required autofocus)#password.form-control
+						input(type="password" placeholder="input your password" name="doctorPassword" required autofocus)#password.form-control
 			.row
 				br
 				br
 			.row
 				.form-group
 					.col-sm-offset-2.col-sm-10
-						//-button.btn.btn-lg.btn-primary.btn-block(type="submit") Sign in
-						a(href="#", data-toggle="modal", data-target="#signinModal").btn.btn-success.btn-lg Sign in
-	#signinModal.modal.fade
-		.modal-dialog
-			.modal-content
-				form(method="POST", action="/user/signin")
-			.modal-header user authenticate
-			.modal-body
-				.form-group
-					label(for="signinName") Id card No
-					input#signinName.form-control(name="user[name]", type="text")
-				.form-group
-					label(for="signinPassword") password
-					input#signinPassword.form-control(name="user[password]", type="text")
-			.modal-footer
-				button.btn.btn-default(type="button", data-dismiss="modal") close
-				button.btn.btn-success(type="submit") submit
+						button.btn.btn-lg.btn-primary.btn-block(type="submit") Sign in

@@ -2,7 +2,7 @@ extends ../layout.pug
 
 block content
 	div.container
-		form.form-signin.form-orizontal(method="POST" action="/doctor/signInDoctorHandler")
+		form.form-signin.form-orizontal(method="POST" action="/signInDoctorHandler")
 			h2.form-signin-heading Doctor, Please sign in
 			label(for="inputId").sr-only User Id
 			input(type="text" placeholder="Id card number" name="doctorId" required autofocus)#inputId.form-control

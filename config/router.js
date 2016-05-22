@@ -26,7 +26,7 @@ module.exports = function(app){
   app.get('/', Index.index);
 
   app.get('/signInPatient', Patient.signInPatient)
-  app.post('/patient/signInPatientHandler',urlencodedParser, Patient.signInPatientHandler);
+  app.post('/signInPatientHandler',urlencodedParser, Patient.signInPatientHandler);
   app.get('/logout', Patient.logout)
 
   app.get('/signUpInputId', Patient.signUpShowInputId)
@@ -38,7 +38,7 @@ module.exports = function(app){
   app.get('/signInDoctor', function(req, res){
     res.render('signInDoctor');
   });
-  app.post('/doctor/signInDoctorHandler', urlencodedParser, Doctor.signInDoctorHandler)
+  app.post('/signInDoctorHandler', urlencodedParser, Doctor.signInDoctorHandler)
   app.get('/patientInfoInDoctor', function(req, res){
     res.render('patientInfoInDoctor', {
       patient: {id: "1", lastName: "xinyi", firstName:"li", mobileNo:+8615828006196, gender: "female", birth: "1994.08.08", email:"396275915@qq.com", createAt:"2015.01.01", updateAt:"2016.02.01"}
@@ -48,8 +48,8 @@ module.exports = function(app){
 
 
 
-   app.get('/patient/medicalRecords/:IdCardNo', MedicalRecords.medicalRecordsByID);
-  app.post('/patient/addMedicalHandler',urlencodedParser,MedicalRecords.addMedicalHandler);
+   app.get('/medicalRecords/:IdCardNo', MedicalRecords.medicalRecordsByID);
+  app.post('/addMedicalHandler',urlencodedParser,MedicalRecords.addMedicalHandler);
   app.get('/addMedicalRecords', MedicalRecords.addMedicalRecords)
 
 

@@ -14,6 +14,7 @@ exports.signInRequired=function(req,res,next){
 exports.signInDoctorHandler= function(req, res) {
   var doctorId = req.body.doctorId
   var doctorPassword = req.body.doctorPassword
+  console.log(doctorId);
   Doctor.findOne({doctorId: doctorId}, function(err, doctorInfo) {
     if (err) {
       console.log(err)
@@ -21,7 +22,7 @@ exports.signInDoctorHandler= function(req, res) {
     if (!doctorInfo) {
       return res.send("no such user")
     }
-    doctorInfo.comparePassword(password, function(err, isMatch) {
+    doctorInfo.comparePassword(doctorPassword, function(err, isMatch) {
       if (err) {
         console.log(err)
       }

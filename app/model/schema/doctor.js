@@ -17,7 +17,7 @@ var DoctorSchema = new mongoose.Schema({
   password: String,
   firstName:String,
   lastName:String,
-  hospital:String
+  hospital:String,
   gender:String,
   birth:String,
   email:String,

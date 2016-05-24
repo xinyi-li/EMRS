@@ -1,7 +1,7 @@
 var express = require('express');
 var app= express();
 var path = require('path');
-app.listen(3001);
+app.listen(3000);
 var mongoose = require("mongoose");
 var Patient=require("./app/model/patient")
 var linkMongoDB="mongodb://127.0.0.1:27017/EMRS"

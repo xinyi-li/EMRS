@@ -11,6 +11,9 @@ exports.signInRequired=function(req,res,next){
   next()
 }
 
+exports.signInDoctor=function(req, res){
+    res.render('signInDoctor');}
+
 exports.signInDoctorHandler= function(req, res) {
   var doctorId = req.body.doctorId
   var doctorPassword = req.body.doctorPassword

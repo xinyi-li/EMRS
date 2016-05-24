@@ -7,10 +7,10 @@ AWS.config.update({
 });
 
 var docClient = new AWS.DynamoDB.DocumentClient();
-
+var tableName="MedicalRecords"
 exports.queryParm = function(IdCardNo){
     return params = {
-        TableName : "MedicalRecords",
+        TableName : tableName,
         KeyConditionExpression: "#id = :idValue",
         ExpressionAttributeNames:{
             "#id": "PatientLinkId"
@@ -22,11 +22,12 @@ exports.queryParm = function(IdCardNo){
 }
 exports.createMedicalRecord = function(receiveInfo){
     return params = {
-        TableName:table,
+        TableName:tableName,
         Item:{
             "PatientLinkId": receiveInfo.PatientLinkId,
             "DoctorLinkId": receiveInfo.DoctorLinkId,
             "DoctorFirstName":receiveInfo.DoctorFirstName,
+            "DoctorLastName":receiveInfo.DoctorLastName,
             "Hospital":receiveInfo.Hospital,
             "Records":receiveInfo.Records
         }

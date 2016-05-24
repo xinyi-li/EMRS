@@ -31,7 +31,7 @@ exports.signUpIfPatientInDatabase=function(req,res,next){
 
 exports.signUpDetailsShow=function(req,res){
   var id=req.inputId;
-  console.log(id);
+  console.log("id is"+ id);
   if(id){
     req.session.InputId=id;
     res.render('signUp_details')
@@ -60,7 +60,7 @@ exports.signUpDetails=function(req,res){
     res.send("two password is not the same")
   }
 
-  if(!password||!rePassword||!firstName||!lastName||!gender||!birth||!email||!mobileNo){
+  else if(!password||!rePassword||!firstName||!lastName||!gender||!birth||!email||!mobileNo){
     console.log(!password||!rePassword||!firstName||!lastName||!gender||!birth||!email||!mobileNo);
     console.log(password);
     console.log(rePassword);
@@ -93,8 +93,7 @@ exports.signUpDetails=function(req,res){
       else{
          res.send("sign up successfully")
       }
-     
-     });
+    });
   }
 }
 
@@ -122,8 +121,9 @@ exports.signInPatientHandler= function(req, res) {
       }
       if (isMatch) {
         var doctorInfo=req.session.doctorInfo
+        console.log("doctor is"+ doctorInfo);
         if(doctorInfo){
-          delete req.session.doctorInfo;
+          req.session.patientInfoInDoctor=patientInfo;
           res.render('patientInfoInDoctor', {doctor: doctorInfo, patient:patientInfo});
         }
         else{
@@ -139,6 +139,8 @@ exports.signInPatientHandler= function(req, res) {
 };
 
 exports.logout= function(req, res){
+  delete req.session.patientInfoInDoctor
+  delete req.session.doctorInfo;
   delete req.session.patientInfo;
-  res.redirect('/');
+  res.send("clean all the role")
 }

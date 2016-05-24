@@ -41,10 +41,11 @@ block content
 					p #{patient.updateAt}
 		.row
 			.col-md-4
-				-var link='/medicalRecords/'+patient.linkDynamoDB
-				a.btn.btn-info.btn-lg(href=link) view your patient's medical records
+				form(method="Get" action="/medicalRecords")
+					.form-group
+						button(type="submit").btn.btn-info.btn-lg view your medical records
 			.col-md-4.col-md-offset-4
-				a.btn.btn-success.btn-lg(href='/medicalRecords/add') add the records
+				a.btn.btn-success.btn-lg(href='/addMedical') add the records
 
 
 

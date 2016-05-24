@@ -7,17 +7,13 @@ block content
 				.panel-heading
 					.row
 						.col-md-2 
-							h6 Doctor Last Name: #{item.doctorLastName}
+							h6 Doctor Last Name: #{doctor.lastName}
 						.col-md-2 
-							h6 Doctor First Name: #{item.doctorFirstName}
+							h6 Doctor First Name: #{doctor.firstName}
 						.col-md-2 
-							h6 Hospital: #{item.hospital}
-						.col-md-3
-							h6 Create time:
-						.col-md-3
-							h6 Last modify time:
+							h6 Hospital: #{doctor.hospital}
 				.panel-body
-					.form(method="POST" action="/user/addMedicalHandler")
+					form(method="POST" action="/addMedicalHandler")
 						.row
 							.col-md-2
 								h5 Symptom:
